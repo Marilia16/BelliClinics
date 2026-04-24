@@ -23,5 +23,11 @@ module BelliClinics
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configuração de timezone e locale
+    config.time_zone = "Brasilia"
+    config.active_record.default_timezone = :utc
+    config.i18n.default_locale = "pt-BR"
+
   end
 end
