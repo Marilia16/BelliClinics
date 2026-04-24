@@ -1,4 +1,4 @@
-FROM ruby:3.4.1
+FROM ruby:3.4.9
 
 # Instalar dependências do sistema para Postgres e compilação de Gems
 RUN apt-get update -qq && apt-get install -y \
@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get install -y \
 RUN gem install ruby-vips
 
 # Configurar diretório de trabalho
-WORKDIR /App
+WORKDIR /BelliClinics
 
 # Seta o path para as Gems
 ENV BUNDLE_PATH /box

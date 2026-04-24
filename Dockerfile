@@ -2,13 +2,13 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t app .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name app app
+# docker build -t belli_clinics .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name belli_clinics belli_clinics
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=3.4.1
+ARG RUBY_VERSION=3.4.9
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
