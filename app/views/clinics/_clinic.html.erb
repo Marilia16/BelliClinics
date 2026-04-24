@@ -1,14 +1,12 @@
-<div id="<%= dom_id clinic %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= clinic.name %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Cnpj:</strong>
-    <%= clinic.cnpj %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= clinic.user_id %>
-  </div>
-</div>
+<tr id="<%= dom_id clinic %>" class="hover:bg-gray-50 dark:hover:bg-white/[0.02]">
+  <td class="whitespace-nowrap px-5 py-4 text-sm font-medium text-gray-800 dark:text-white/90"><%= clinic.name %></td>
+  <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-600 dark:text-gray-300"><%= clinic.cnpj %></td>
+  <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-600 dark:text-gray-300"><%= clinic.owner.email %></td>
+  <td class="whitespace-nowrap px-5 py-4 text-right">
+    <div class="inline-flex items-center gap-2">
+      <%= link_to "Ver", clinic, class: "inline-flex items-center rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" %>
+      <%= link_to "Editar", edit_clinic_path(clinic), class: "inline-flex items-center rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" %>
+      <%= button_to "Excluir", clinic, method: :delete, class: "inline-flex items-center rounded-lg bg-error-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-error-600", data: { turbo_confirm: "Tem certeza de que deseja excluir esta clínica?" } %>
+    </div>
+  </td>
+</tr>

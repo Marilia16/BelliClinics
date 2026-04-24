@@ -1,27 +1,57 @@
-<% content_for :title, "Clinics" %>
+<% content_for :title, "Clínicas" %>
 
-<div class="w-full">
-  
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Clinics</h1>
-    <%= link_to "New clinic", new_clinic_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+<div class="space-y-6">
+  <div class="space-y-3">
+    <%= render "shared/dashboard/breadcrumb",
+               items: [
+                 { label: "Dashboard", path: clinics_path },
+                 { label: "Clínicas", current: true }
+               ] %>
   </div>
 
-  <div id="clinics" class="min-w-full divide-y divide-gray-200 space-y-5">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-start gap-3">
+      <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-500 dark:bg-brand-500/10 dark:text-brand-400">
+        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.75 16.25V6.25L10 3.75L16.25 6.25V16.25H3.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+          <path d="M7.5 10H12.5M10 7.5V12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </span>
+      <div>
+        <h1 class="text-2xl font-semibold text-gray-800 dark:text-white/90">Clínicas</h1>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Gerencie as clínicas cadastradas no sistema.</p>
+      </div>
+    </div>
+    <%= link_to "Nova clínica", new_clinic_path, class: "inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600" %>
+  </div>
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+    <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800 sm:px-6">
+      <h2 class="text-base font-semibold text-gray-800 dark:text-white/90">Lista de clínicas</h2>
+    </div>
+
     <% if @clinics.any? %>
-      <% @clinics.each do |clinic| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render clinic %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", clinic, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_clinic_path(clinic), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", clinic, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
+          <thead class="bg-gray-50 dark:bg-gray-900/40">
+            <tr>
+              <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Nome</th>
+              <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">CNPJ</th>
+              <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Usuário Proprietário</th>
+              <th class="px-5 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">Ações</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
+            <% @clinics.each do |clinic| %>
+              <%= render "clinic", clinic: clinic %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     <% else %>
-      <p class="text-center my-10">No clinics found.</p>
+      <div class="px-5 py-10 text-center sm:px-6">
+        <p class="text-sm text-gray-500 dark:text-gray-400">Nenhuma clínica encontrada.</p>
+      </div>
     <% end %>
   </div>
 </div>
