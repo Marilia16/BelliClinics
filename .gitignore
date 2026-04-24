@@ -39,3 +39,6 @@
 
 # Ignore Mac OS files
 .DS_Store
+
+
+/z_template_example/
