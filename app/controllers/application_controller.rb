@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   stale_when_importmap_changes
 
   # Autenticação de usuarios
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
 
 end
