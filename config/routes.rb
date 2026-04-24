@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  # Rotas para a paginas estaticas
+  get "pages/:id" => "pages#index", :as => :pages
+
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "pages#index", :id => "home"
 end
