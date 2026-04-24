@@ -24,7 +24,10 @@
   </head>
 
   <body class="bg-slate-50">
-    <main class="container mx-auto mt-28 flex flex-col px-5">
+    <main class="container mx-auto flex flex-col px-5">
+      <div class="mb-6 space-y-3">
+        <%= render "shared/flash_messages" %>
+      </div>
       <%= yield %>
     </main>
   </body>
