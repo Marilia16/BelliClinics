@@ -45,6 +45,8 @@ gem "image_processing", "~> 1.2"
 ######################### Minhas Gems #########################
 # gem para autenticação de usuarios
 gem 'devise'
+
+gem "rolify"
 ###############################################################
 
 group :development, :test do

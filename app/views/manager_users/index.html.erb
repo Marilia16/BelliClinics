@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Usuários Gerenciadores</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <%= link_to "Novo Usuário", new_manager_user_path, class: "btn btn-primary" %>
+        </div>
+    </div>
+
+    <% if @users.any? %>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @users.each do |user| %>
+                        <tr>
+                            <td><%= user.id %></td>
+                            <td><%= user.email %></td>
+                            <td>
+                                <span class="badge bg-danger">
+                                    <%= user.roles_name %>
+                                </span>
+                            </td>
+                            <td>
+                                <%= link_to "Editar", edit_manager_user_path(user), class: "btn btn-sm btn-warning" %>
+                                <%= link_to "Deletar", manager_user_path(user), method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-sm btn-danger" %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    <% else %>
+        <div class="alert alert-info" role="alert">
+            Nenhum usuário encontrado.
+        </div>
+    <% end %>
+</div>

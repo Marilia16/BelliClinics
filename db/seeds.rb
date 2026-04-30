@@ -7,3 +7,10 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Create a default admin user if it doesn't exist
+User.create(email: "admin@gmail.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.current)
+User.create(email: "client@gmail.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.current) 
+User.create(email: "doctor@gmail.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.current)
+User.create(email: "attendant@gmail.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.current)
+User.create(email: "professional@gmail.com", password: "123456", password_confirmation: "123456", confirmed_at: Time.current)
