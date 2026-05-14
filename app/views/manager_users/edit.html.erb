@@ -1,0 +1,61 @@
+<% content_for :title, "Editar roles" %>
+
+<div class="space-y-6">
+  <div class="space-y-3">
+    <%= render "shared/dashboard/breadcrumb",
+               items: [
+                 { label: "Dashboard", path: clinics_path },
+                 { label: "Gerenciar roles", path: manager_users_path },
+                 { label: "Editar", current: true }
+               ] %>
+  </div>
+
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h1 class="text-2xl font-semibold text-gray-800 dark:text-white/90">Editar roles</h1>
+      <% if @user.present? %>
+        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400"><%= @user.email %></p>
+      <% else %>
+        <p class="mt-1 text-sm text-rose-600">Usuário não encontrado (id: <%= params[:id].presence || "—" %>).</p>
+      <% end %>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-2">
+      <%= link_to "Voltar", manager_users_path, class: "inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" %>
+    </div>
+  </div>
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+    <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800 sm:px-6">
+      <h2 class="text-base font-semibold text-gray-800 dark:text-white/90">Roles</h2>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Selecione as permissões desse usuário.</p>
+    </div>
+
+    <div class="p-5 sm:p-6">
+      <% if @user.present? %>
+        <%= form_with model: @user, url: manager_user_path(@user), method: :patch, class: "space-y-6" do %>
+        <% roles = ManagerUsersController::ALLOWED_ROLES %>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <% roles.each do |role| %>
+            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 transition hover:bg-gray-50 dark:border-gray-800 dark:bg-white/[0.02] dark:text-gray-300 dark:hover:bg-white/[0.04]">
+              <%= check_box_tag "user[role_names][]", role, @user.has_role?(role), class: "h-4 w-4 rounded border-gray-300 text-brand-500 focus:ring-brand-500/20 dark:border-gray-700" %>
+              <span class="font-medium"><%= role %></span>
+            </label>
+          <% end %>
+        </div>
+
+        <input type="hidden" name="user[role_names][]" value="" />
+
+        <div class="flex flex-wrap items-center gap-2">
+          <%= button_tag type: "submit", class: "inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white shadow-theme-xs transition hover:bg-brand-600" do %>
+            Salvar roles
+          <% end %>
+
+          <%= link_to "Cancelar", manager_users_path, class: "inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800" %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
